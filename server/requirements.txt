@@ -1,0 +1,4 @@
+fastapi[standard]
+rembg[cpu]
+python-multipart
+pillow
