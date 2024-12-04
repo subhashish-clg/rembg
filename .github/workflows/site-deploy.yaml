@@ -31,9 +31,9 @@ jobs:
         working-directory: ./client
 
       # Copy the dist directory to the target server location
-      - name: Copy dist directory to /www/rembg.snabajja.in
+      - name: Copy dist directory to /var/www/rembg.snabajja.in
         run: |
-          cp -r ./client/dist/* /www/rembg.snabajja.in/
+          cp -r ./dist/* /www/rembg.snabajja.in/
         working-directory: ./client
 
       # Restart Nginx (if necessary)
