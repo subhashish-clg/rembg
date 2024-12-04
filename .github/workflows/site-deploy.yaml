@@ -33,7 +33,7 @@ jobs:
       # Copy the dist directory to the target server location
       - name: Copy dist directory to /var/www/rembg.snabajja.in
         run: |
-          cp -r ./dist/* /www/rembg.snabajja.in/
+          cp -r ./dist/* /var/www/rembg.snabajja.in/
         working-directory: ./client
 
       # Restart Nginx (if necessary)
