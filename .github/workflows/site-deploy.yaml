@@ -18,23 +18,23 @@ jobs:
         with:
           clean: false
 
-      - name: Change directory
-        run: cd client
-
       # Install dependencies
       - name: Install dependencies
         run: |
           pnpm install
+        working-directory: ./client
 
       # Build the Vite application
       - name: Build Vite App
         run: |
           pnpm run build
+        working-directory: ./client
 
       # Copy the dist directory to the target server location
       - name: Copy dist directory to /www/rembg.snabajja.in
         run: |
-          sudo cp -r dist/* /www/rembg.snabajja.in/
+          sudo cp -r ./client/dist/* /www/rembg.snabajja.in/
+        working-directory: ./client
 
       # Restart Nginx (if necessary)
       - name: Restart Nginx
