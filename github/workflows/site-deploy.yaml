@@ -1,0 +1,42 @@
+name: Deploy Vite Application
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build Vite App and Deploy via Nginx
+    runs-on: self-hosted # Use self-hosted runner instead of GitHub-hosted runners
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          clean: false
+
+      - name: Change directory
+        run: cd client
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      # Build the Vite application
+      - name: Build Vite App
+        run: |
+          pnpm run build
+
+      # Copy the dist directory to the target server location
+      - name: Copy dist directory to /www/rembg.snabajja.in
+        run: |
+          sudo cp -r dist/* /www/rembg.snabajja.in/
+
+      # Restart Nginx (if necessary)
+      - name: Restart Nginx
+        run: |
+          sudo systemctl restart nginx
