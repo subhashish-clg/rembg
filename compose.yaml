@@ -1,0 +1,16 @@
+services:
+  rembg-api:
+    container_name: rembg-api
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "4000:8000"
+
+  rembg-client:
+    container_name: rembg-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "4001:80"

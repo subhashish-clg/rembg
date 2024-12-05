@@ -25,7 +25,10 @@ export default function ImageSlider() {
 
     const file = files[0].file;
 
-    if (!file) throw new Error("Image is not a valid file.");
+    if (!file) {
+      setIsLoading(false);
+      throw new Error("Image is not a valid file.");
+    }
 
     const formData = new FormData();
     formData.append("file", file);
